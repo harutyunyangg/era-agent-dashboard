@@ -1,2 +1,8 @@
-obj/
-bin/
+diff
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,2 +1,4 @@
+ obj/
+ bin/
++.vscode/
++.idx/
