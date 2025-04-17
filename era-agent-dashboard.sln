@@ -2,7 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard", "EraAgentDashboard.csproj", "{15693592-AA45-B342-E78A-6202C5C1EB8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Application", "EraAgentDashboard.Application\EraAgentDashboard.Application.csproj", "{7C063C6A-DCA5-42B9-7084-BF26A28CE02F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Domain", "EraAgentDashboard.Domain\EraAgentDashboard.Domain.csproj", "{BBC6F985-A903-6C90-7056-04A501732CEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Server", "EraAgentDashboard.Server\EraAgentDashboard.Server.csproj", "{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Infrastructure", "..\EraAgentDashboard.Infrastructure\EraAgentDashboard.Infrastructure.csproj", "{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +16,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15693592-AA45-B342-E78A-6202C5C1EB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15693592-AA45-B342-E78A-6202C5C1EB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15693592-AA45-B342-E78A-6202C5C1EB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15693592-AA45-B342-E78A-6202C5C1EB8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C063C6A-DCA5-42B9-7084-BF26A28CE02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C063C6A-DCA5-42B9-7084-BF26A28CE02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C063C6A-DCA5-42B9-7084-BF26A28CE02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C063C6A-DCA5-42B9-7084-BF26A28CE02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC6F985-A903-6C90-7056-04A501732CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC6F985-A903-6C90-7056-04A501732CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC6F985-A903-6C90-7056-04A501732CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC6F985-A903-6C90-7056-04A501732CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

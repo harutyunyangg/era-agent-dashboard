@@ -1,0 +1,84 @@
+@page "/calllogs"
+@using EraAgentDashboard.Application.Features.CallLogs.Queries
+@using EraAgentDashboard.Application.Features.CallLogs.DTOs
+@inject MediatR.IMediator Mediator                         
+@inject ILogger<CallLogs> Logger                           
+
+<PageTitle>Call Logs</PageTitle>
+
+<h1>Call Logs</h1>
+
+<p>This component demonstrates fetching call log data using Clean Architecture.</p>
+
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (errorLoading)
+{
+    <p><em>Failed to load call logs. Please check logs or try again later.</em></p>
+}
+else if (callLogs == null || !callLogs.Any())
+{
+    <p><em>No call logs found.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Created At</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Cost</th>
+                <th>Destination</th>
+                @* Add other headers as needed *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in callLogs)
+            {
+                <tr>
+                    <td>@log.Id</td>
+                    <td>@log.CreatedAt?.ToString("g")</td>
+                    <td>@log.Type</td>
+                    <td>@log.Status</td>
+                    <td>@log.Cost?.ToString("C")</td>
+                    <td>@log.DestinationNumber</td>
+                    @* Render other columns *@
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    // These comments are fine HERE inside the code block
+    // Using for Query
+    // Using for DTO
+
+    private IEnumerable<CallLogDto>? callLogs;
+    private bool isLoading = true;
+    private bool errorLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        errorLoading = false;
+        try
+        {
+            callLogs = await Mediator.Send(new GetCallLogsQuery());
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error loading call logs in CallLogs page.");
+            errorLoading = true;
+            callLogs = null; // Ensure logs are cleared on error
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}
