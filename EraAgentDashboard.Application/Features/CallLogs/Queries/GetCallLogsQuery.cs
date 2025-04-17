@@ -1,45 +1,49 @@
 ﻿// EraAgentDashboard.Application/Features/CallLogs/Queries/GetCallLogsQueryHandler.cs
-using MediatR;
-using EraAgentDashboard.Application.Interfaces;
+using AutoMapper;
+using EraAgentDashboard.Application.Interfaces; // Assuming IVapiClient is here
 using EraAgentDashboard.Application.Features.CallLogs.DTOs;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Linq; // For mapping
-                   // using AutoMapper; // Or use AutoMapper
+using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace EraAgentDashboard.Application.Features.CallLogs.Queries;
 
-public record GetCallLogsQuery : IRequest<IEnumerable<CallLogDto>>; // Request returns a list of DTOs
+public class GetCallLogsQuery : IRequest<IEnumerable<CallLogDto>> { }
 
 public class GetCallLogsQueryHandler : IRequestHandler<GetCallLogsQuery, IEnumerable<CallLogDto>>
 {
     private readonly IVapiClient _vapiClient;
-    // private readonly IMapper _mapper; // If using AutoMapper
+    private readonly IMapper _mapper; // Ensure IMapper is injected
+    private readonly ILogger<GetCallLogsQueryHandler> _logger;
 
-    public GetCallLogsQueryHandler(IVapiClient vapiClient /*, IMapper mapper*/)
+    public GetCallLogsQueryHandler(IVapiClient vapiClient, IMapper mapper, ILogger<GetCallLogsQueryHandler> logger)
     {
-        _vapiClient = vapiClient;
-        // _mapper = mapper;
+        _vapiClient = vapiClient ?? throw new ArgumentNullException(nameof(vapiClient));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public async Task<IEnumerable<CallLogDto>> Handle(GetCallLogsQuery request, CancellationToken cancellationToken)
     {
-        var domainLogs = await _vapiClient.GetCallLogsAsync(cancellationToken);
-
-        // Manual Mapping (or use AutoMapper)
-        var dtos = domainLogs.Select(log => new CallLogDto
+        try
         {
-            Id = log.Id,
-            CreatedAt = log.CreatedAt,
-            Type = log.Type,
-            Status = log.Status,
-            Cost = log.Cost,
-            DestinationNumber = log.DestinationNumber
-            // Map other needed properties
-        }).ToList();
+            // 1. Fetch Domain Entities (VapiClient now returns Domain Entities thanks to Infrastructure mapping)
+            var domainLogs = await _vapiClient.GetCallLogsAsync(cancellationToken);
 
-        // return _mapper.Map<IEnumerable<CallLogDto>>(domainLogs); // AutoMapper version
-        return dtos;
+            if (domainLogs == null || !domainLogs.Any())
+            {
+                return Enumerable.Empty<CallLogDto>();
+            }
+
+            // 2. Map Domain Entities to Application DTOs using Application mapping profile
+            var dtos = _mapper.Map<IEnumerable<CallLogDto>>(domainLogs);
+
+            return dtos;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving or mapping call logs in GetCallLogsQueryHandler.");
+            // Depending on requirements, you might return empty or throw a specific application exception
+            return Enumerable.Empty<CallLogDto>();
+        }
     }
 }
