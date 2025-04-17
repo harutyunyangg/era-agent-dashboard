@@ -45,7 +45,11 @@ public class CallLogService
                 UpdatedAt = item.TryGetValue("updatedAt", out var updatedAt) && updatedAt != null ? DateTime.Parse(updatedAt.ToString()!) : null,
                 Type = item.TryGetValue("type", out var type) ? type?.ToString() : null,
                 Status = item.TryGetValue("status", out var status) ? status?.ToString() : null,
-                Cost = item.TryGetValue("cost", out var cost) && cost != null ? Convert.ToDouble(cost) : null
+                Cost = item.TryGetValue("cost", out var cost) && cost != null ?
+          cost is System.Text.Json.JsonElement jsonElement && jsonElement.ValueKind == System.Text.Json.JsonValueKind.Number ?
+            jsonElement.GetDouble() : null
+           : null
+
             });
 
             return callLogs.ToList() ?? [];
