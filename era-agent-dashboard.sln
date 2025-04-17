@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Server", "EraAgentDashboard.Server\EraAgentDashboard.Server.csproj", "{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Infrastructure", "..\EraAgentDashboard.Infrastructure\EraAgentDashboard.Infrastructure.csproj", "{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EraAgentDashboard.Infrastructure", "EraAgentDashboard.Infrastructure\EraAgentDashboard.Infrastructure.csproj", "{5C0B08BA-D643-5F67-7A91-F9C2D588280B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EB7DA24-E68F-FBCE-96E8-E64FAA25DCB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A84F2A59-E0CE-490B-A6C1-D973FDBA0EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0B08BA-D643-5F67-7A91-F9C2D588280B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0B08BA-D643-5F67-7A91-F9C2D588280B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0B08BA-D643-5F67-7A91-F9C2D588280B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0B08BA-D643-5F67-7A91-F9C2D588280B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

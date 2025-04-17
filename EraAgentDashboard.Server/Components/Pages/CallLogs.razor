@@ -1,8 +1,8 @@
 @page "/calllogs"
 @using EraAgentDashboard.Application.Features.CallLogs.Queries
 @using EraAgentDashboard.Application.Features.CallLogs.DTOs
-@inject MediatR.IMediator Mediator                         
-@inject ILogger<CallLogs> Logger                           
+@inject MediatR.IMediator Mediator
+@inject ILogger<CallLogs> Logger
 
 <PageTitle>Call Logs</PageTitle>
 
@@ -33,6 +33,7 @@ else
                 <th>Status</th>
                 <th>Cost</th>
                 <th>Destination</th>
+                <th>Customer Number</th> @* <-- Header Added *@
                 @* Add other headers as needed *@
             </tr>
         </thead>
@@ -46,6 +47,7 @@ else
                     <td>@log.Status</td>
                     <td>@log.Cost?.ToString("C")</td>
                     <td>@log.DestinationNumber</td>
+                    <td>@log.CustomerNumber</td> @* <-- Data Cell Added *@
                     @* Render other columns *@
                 </tr>
             }
@@ -54,10 +56,6 @@ else
 }
 
 @code {
-    // These comments are fine HERE inside the code block
-    // Using for Query
-    // Using for DTO
-
     private IEnumerable<CallLogDto>? callLogs;
     private bool isLoading = true;
     private bool errorLoading = false;
@@ -74,7 +72,7 @@ else
         {
             Logger.LogError(ex, "Error loading call logs in CallLogs page.");
             errorLoading = true;
-            callLogs = null; // Ensure logs are cleared on error
+            callLogs = null;
         }
         finally
         {

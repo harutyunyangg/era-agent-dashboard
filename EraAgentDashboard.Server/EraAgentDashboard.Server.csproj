@@ -9,12 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\EraAgentDashboard.Infrastructure\EraAgentDashboard.Infrastructure.csproj" />
     <ProjectReference Include="..\EraAgentDashboard.Application\EraAgentDashboard.Application.csproj" />
+    <ProjectReference Include="..\EraAgentDashboard.Infrastructure\EraAgentDashboard.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
