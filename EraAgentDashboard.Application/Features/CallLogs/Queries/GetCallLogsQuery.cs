@@ -17,9 +17,9 @@ public class GetCallLogsQueryHandler : IRequestHandler<GetCallLogsQuery, IEnumer
 
     public GetCallLogsQueryHandler(IVapiClient vapiClient, IMapper mapper, ILogger<GetCallLogsQueryHandler> logger)
     {
-        _vapiClient = vapiClient ?? throw new ArgumentNullException(nameof(vapiClient));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _vapiClient = vapiClient;
+        _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<CallLogDto>> Handle(GetCallLogsQuery request, CancellationToken cancellationToken)
@@ -31,19 +31,17 @@ public class GetCallLogsQueryHandler : IRequestHandler<GetCallLogsQuery, IEnumer
 
             if (domainLogs == null || !domainLogs.Any())
             {
-                return Enumerable.Empty<CallLogDto>();
+                return [];
             }
 
             // 2. Map Domain Entities to Application DTOs using Application mapping profile
-            var dtos = _mapper.Map<IEnumerable<CallLogDto>>(domainLogs);
-
-            return dtos;
+            return _mapper.Map<IEnumerable<CallLogDto>>(domainLogs);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error retrieving or mapping call logs in GetCallLogsQueryHandler.");
             // Depending on requirements, you might return empty or throw a specific application exception
-            return Enumerable.Empty<CallLogDto>();
+            return [];
         }
     }
 }
